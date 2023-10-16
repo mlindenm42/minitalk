@@ -6,7 +6,7 @@
 /*   By: mlindenm <mlindenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 00:52:50 by mlindenm          #+#    #+#             */
-/*   Updated: 2023/10/16 04:19:11 by mlindenm         ###   ########.fr       */
+/*   Updated: 2023/10/16 04:39:02 by mlindenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,17 @@ void	send_character(pid_t server_pid, char c)
 	}
 }
 
+static void	signal_handler(int sig)
+{
+	if (sig == SIGUSR1)
+	{
+		write(1, "Server received the string\n", 27);
+		exit(EXIT_SUCCESS);
+	}
+	else
+		exit(EXIT_FAILURE);
+}
+
 int	main(int argc, char *argv[])
 {
 	pid_t	server_pid;
@@ -75,6 +86,7 @@ int	main(int argc, char *argv[])
 		ft_printf("Usage: %s <server-pid> <string>\n", argv[0]);
 		return (1);
 	}
+	signal(SIGUSR1, signal_handler);
 	server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0)
 	{
