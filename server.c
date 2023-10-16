@@ -6,7 +6,7 @@
 /*   By: mlindenm <mlindenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 00:53:29 by mlindenm          #+#    #+#             */
-/*   Updated: 2023/10/16 04:49:51 by mlindenm         ###   ########.fr       */
+/*   Updated: 2023/10/16 04:54:40 by mlindenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		g_i = 0;
 
-void	*ft_memset(void *s, int c, size_t n)
+static void	*ft_memset(void *s, int c, size_t n)
 {
 	size_t	i;
 	char	*ptr;
@@ -30,7 +30,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-void	handler_sigusr(int sig, siginfo_t *sinfo, void *ptr)
+static void	handler_sigusr(int sig, siginfo_t *sinfo, void *ptr)
 {
 	static int	bit_count = 0;
 	static char	byte = 0;

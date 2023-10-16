@@ -6,7 +6,7 @@
 /*   By: mlindenm <mlindenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 00:52:50 by mlindenm          #+#    #+#             */
-/*   Updated: 2023/10/16 04:39:02 by mlindenm         ###   ########.fr       */
+/*   Updated: 2023/10/16 04:57:13 by mlindenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-int	ft_isdigit(int c)
+static int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+static int	ft_atoi(const char *str)
 {
 	int			i;
 	int			sign;
@@ -48,7 +48,7 @@ int	ft_atoi(const char *str)
 	return (sign * res);
 }
 
-void	send_character(pid_t server_pid, char c)
+static void	send_character(pid_t server_pid, char c)
 {
 	long	i;
 
@@ -64,11 +64,11 @@ void	send_character(pid_t server_pid, char c)
 	}
 }
 
-static void	signal_handler(int sig)
+static void	signal_receiver(int sig)
 {
 	if (sig == SIGUSR1)
 	{
-		write(1, "Server received the string\n", 27);
+		write(1, "Server: String received\n", 24);
 		exit(EXIT_SUCCESS);
 	}
 	else
@@ -86,7 +86,7 @@ int	main(int argc, char *argv[])
 		ft_printf("Usage: %s <server-pid> <string>\n", argv[0]);
 		return (1);
 	}
-	signal(SIGUSR1, signal_handler);
+	signal(SIGUSR1, signal_receiver);
 	server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0)
 	{
