@@ -6,7 +6,7 @@
 /*   By: mlindenm <mlindenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 00:52:50 by mlindenm          #+#    #+#             */
-/*   Updated: 2023/04/18 21:58:58 by mlindenm         ###   ########.fr       */
+/*   Updated: 2023/10/16 04:19:11 by mlindenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_atoi(const char *str)
 
 void	send_character(pid_t server_pid, char c)
 {
-	int	i;
+	long	i;
 
 	i = 0;
 	while (i < 8)
