@@ -6,14 +6,12 @@
 /*   By: mlindenm <mlindenm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 00:53:29 by mlindenm          #+#    #+#             */
-/*   Updated: 2023/10/16 04:54:40 by mlindenm         ###   ########.fr       */
+/*   Updated: 2023/10/16 06:58:05 by mlindenm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include "ft_printf.h"
-
-int		g_i = 0;
 
 static void	*ft_memset(void *s, int c, size_t n)
 {
@@ -45,13 +43,9 @@ static void	handler_sigusr(int sig, siginfo_t *sinfo, void *ptr)
 		{
 			write(1, "\n", 1);
 			kill(sinfo->si_pid, SIGUSR1);
-			g_i = 0;
 		}
 		else
-		{
 			write(1, &byte, 1);
-			g_i++;
-		}
 		byte = 0;
 		bit_count = 0;
 	}
